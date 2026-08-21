@@ -1,0 +1,81 @@
+# ═══════════════════════════════════════════════════════════════════
+# GMAO-RAG — docker-compose.yml
+# ═══════════════════════════════════════════════════════════════════
+# Usage :
+#   docker compose up --build          # tout lancer
+#   docker compose up -d               # en arrière-plan
+#   docker compose down                # tout arrêter
+#   docker compose down -v             # arrêter + supprimer les volumes
+# ═══════════════════════════════════════════════════════════════════
+
+services:
+  # ── MySQL (base relationnelle) ────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: gmao-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${GMAO_DB_PASSWORD:-gmao_rag_2026}
+      MYSQL_DATABASE: ${GMAO_DB_NAME:-gmao_rag}
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
+    ports:
+      - "${GMAO_DB_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/mysql/creation_bdd_rag_gmao.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${GMAO_DB_PASSWORD:-gmao_rag_2026}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ── Qdrant (base vectorielle) ─────────────────────────────────
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: gmao-qdrant
+    restart: unless-stopped
+    ports:
+      - "${QDRANT_PORT:-6333}:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  # ── API FastAPI (application principale) ──────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gmao-api
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      # Ecraser les hôtes .env pour pointer vers les containers Docker
+      GMAO_DB_HOST: mysql
+      QDRANT_HOST: qdrant
+    depends_on:
+      mysql:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    volumes:
+      # Monter un dossier pour l'upload de fichiers (optionnel)
+      - uploads_data:/app/uploads
+
+volumes:
+  mysql_data:
+    driver: local
+  qdrant_data:
+    driver: local
+  uploads_data:
+    driver: local

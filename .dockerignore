@@ -1,0 +1,52 @@
+# ═══════════════════════════════════════════════════════════════════
+# GMAO-RAG — .dockerignore
+# ═══════════════════════════════════════════════════════════════════
+# Fichiers exclus du contexte Docker (image plus légère)
+# ═══════════════════════════════════════════════════════════════════
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+
+# Tests (pas besoin dans l'image de prod)
+tests/
+
+# Documentation
+docs/
+documnetations/
+*.md
+!README.md
+
+# IDE
+.vscode/
+.idea/
+
+# Docker (éviter la récursion)
+docker-compose.yml
+
+# Env (les secrets viennent du --env-file au runtime)
+.env
+.env.local
+.env.*.local
+
+# Qdrant storage
+qdrant_storage/
+
+# Fichiers temporaires
+tmp/
+temp/
+*.log
+*.tmp
+*.bak
+
+# Données de test volumineuses
+src/tests/

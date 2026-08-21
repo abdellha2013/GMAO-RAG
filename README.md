@@ -60,7 +60,50 @@ API :
 
 ---
 
-## Prérequis
+## Démarrage rapide avec Docker (recommandé)
+
+La méthode la plus simple pour lancer le projet sur une nouvelle machine :
+
+```bash
+# 1. Cloner le projet
+git clone https://github.com/abdellha2013/GMAO-RAG.git
+cd GMAO-RAG
+
+# 2. Configurer les variables d'environnement
+cp .env.example .env
+# Éditer .env avec vos clés API (OPENAI_API_KEY, etc.)
+
+# 3. Tout lancer (MySQL + Qdrant + API)
+docker compose up --build
+
+# 4. Vérifier
+curl http://localhost:8000/api/v1/health
+```
+
+**Ce que lance Docker Compose :**
+
+| Service | Port | Description |
+|---------|------|-------------|
+| `gmao-api` | 8000 | API FastAPI (application principale) |
+| `gmao-mysql` | 3306 | MySQL 8.0 (base relationnelle) |
+| `gmao-qdrant` | 6333 | Qdrant (base vectorielle) |
+
+**Commandes utiles :**
+
+```bash
+docker compose up --build          # Tout lancer (avec rebuild)
+docker compose up -d               # En arrière-plan
+docker compose logs -f app         # Voir les logs de l'API
+docker compose down                # Tout arrêter
+docker compose down -v             # Arrêter + supprimer les données
+```
+
+> L'entrypoint attend automatiquement que MySQL et Qdrant soient prêts,
+> crée la collection Qdrant, puis lance l'API.
+
+---
+
+## Prérequis (installation manuelle)
 
 - Python 3.13+
 - [uv](https://docs.astral.sh/uv/) (gestionnaire de dépendances)
@@ -70,12 +113,12 @@ API :
 
 ---
 
-## Installation
+## Installation (sans Docker)
 
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/VOTRE_USER/GMAO-RAG.git
+git clone https://github.com/abdellha2013/GMAO-RAG.git
 cd GMAO-RAG
 ```
 
