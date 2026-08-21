@@ -1,0 +1,16 @@
+GMAO Maintenance Data
+
+Machine Maintenance Status
+
+| Machine | Status      | Hours |
+| ------- | ----------- | ----: |
+| CNC-001 | Running     |   125 |
+| CNC-002 | Maintenance |    84 |
+| CNC-003 | Stopped     |   210 |
+| CNC-004 | Running     |    58 |
+
+Maintenance Notes
+
+CNC-001 is operating normally.
+CNC-002 requires preventive maintenance.
+CNC-003 is currently stopped.

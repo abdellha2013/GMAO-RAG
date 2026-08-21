@@ -1,0 +1,17 @@
+========================================
+GMAO AI SERVICE
+========================================
+
+Machine ID : CNC-001
+Status     : Running
+Operator   : John Doe
+
+Maintenance Notes:
+- Lubrication completed.
+- Coolant level checked.
+- No abnormal vibration detected.
+
+Next Maintenance:
+2026-09-15
+
+End of report.

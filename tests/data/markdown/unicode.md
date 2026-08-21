@@ -1,0 +1,23 @@
+# Unicode Test
+
+## Français
+
+é è ê à ç ù œ
+
+## English
+
+Hello World
+
+## العربية
+
+مرحبا بالعالم
+
+## 日本語
+
+こんにちは世界
+
+## Emoji
+
+😀 🚀 📄 🔥
+
+End.

@@ -1,0 +1,6 @@
+id;name;machine;status;hours
+
+1;Ahmed;CNC-01;Running;125
+2;Sara;CNC-02;Maintenance;84
+3;Youssef;CNC-03;Stopped;210
+4;John;CNC-04;Running;58

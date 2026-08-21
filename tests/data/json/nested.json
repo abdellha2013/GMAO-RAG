@@ -1,0 +1,21 @@
+{
+    "factory": {
+        "name": "Plant A",
+        "location": {
+            "city": "Beni Mellal",
+            "country": "Morocco"
+        }
+    },
+    "machines": [
+        {
+            "id": 1,
+            "name": "CNC-01",
+            "status": "Running"
+        },
+        {
+            "id": 2,
+            "name": "CNC-02",
+            "status": "Maintenance"
+        }
+    ]
+}

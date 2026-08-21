@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test &amp; "Difficile" &gt; HTML</title>
+  <style>
+    .broken {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Balises mal imbriquées -->
+  <div><span><b>Texte en gras et en italique <i>interrompu</b></span></i></div>
+
+  <!-- Attributs mal fermés et guillemets manquants -->
+  <a href=https://example.com target=_blank>Lien non sécurisé et mal fermé<p>Paragraphe dans un lien</ap>
+
+      <!-- Tableaux imbriqués complexes et obsolètes -->
+      <table border="1" width="100%">
+        <tr>
+          <td>
+            <table border="0">
+              <tr>
+                <td>
+                  <font color="red">Texte obsolète</font>
+                </td>
+                <!-- Balise non fermée -->
+                <td><span>Cellule ouverte
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Formulaire tordu avec labels orphelins et imbrications illogiques -->
+      <form action="/test" method="POST">
+        <label>Nom : <input type="text" name="nom" value="Valeur " douteuse"" required></label>
+        <button type="submit">Envoyer<div>Attention div ici</div></button>
+      </form>
+
+      <!-- Caractères spéciaux et chevrons erronés sans échappement -->
+      <p>Ceci est un test avec < et> et des & non fermés &test.</p>
+</body>
+
+</html>

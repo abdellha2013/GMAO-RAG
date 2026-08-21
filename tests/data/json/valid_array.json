@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Ahmed",
+        "machine": "CNC-01"
+    },
+    {
+        "id": 2,
+        "name": "Sara",
+        "machine": "CNC-02"
+    },
+    {
+        "id": 3,
+        "name": "John",
+        "machine": "CNC-03"
+    }
+]

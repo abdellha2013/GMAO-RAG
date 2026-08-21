@@ -1,0 +1,12 @@
+[project]
+name = "gmao-rag"
+version = "0.1.0"
+description = "GMAO RAG Project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+package = false
+# Force uv à toujours utiliser l'environnement virtuel actuellement activé dans le terminal
+active = true

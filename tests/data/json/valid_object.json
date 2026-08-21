@@ -1,0 +1,7 @@
+{
+    "machine": "CNC-01",
+    "status": "Running",
+    "hours": 125,
+    "temperature": 42.7,
+    "active": true
+}
